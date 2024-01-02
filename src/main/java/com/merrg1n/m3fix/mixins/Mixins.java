@@ -9,7 +9,8 @@ import java.util.function.Supplier;
 
 
 import com.merrg1n.m3fix.Config;
-import com.merrg1n.m3fix.M3fix;
+import com.merrg1n.m3fix.M3Fix;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.relauncher.FMLLaunchHandler;
 
 public enum Mixins {
@@ -23,7 +24,7 @@ public enum Mixins {
 
     // Journeymap
     FIX_JOURNEYMAP_KEYBINDS(new Builder("Fix Journeymap Keybinds").setPhase(Phase.LATE).setSide(Side.CLIENT)
-        .addMixinClasses("journeymap.MixinConstants").setApplyIf(() -> Config.fixJourneymapKeybinds)
+        .addMixinClasses("journeymap.MixinConstants").setApplyIf(() -> true)
         .addTargetedMod(TargetedMod.JOURNEYMAP)),
     FIX_JOURNEYMAP_ILLEGAL_FILE_PATH_CHARACTER(new Builder("Fix Journeymap Illegal File Path Character")
         .setPhase(Phase.LATE).setSide(Side.CLIENT).addMixinClasses("journeymap.MixinWorldData")
@@ -31,8 +32,35 @@ public enum Mixins {
 
     FIX_JOURNEYMAP_JUMPY_SCROLLING(new Builder("Fix Journeymap jumpy scrolling in the waypoint manager")
         .setPhase(Phase.LATE).setSide(Side.CLIENT).addMixinClasses("journeymap.MixinWaypointManager")
-        .setApplyIf(() -> Config.fixJourneymapJumpyScrolling).addTargetedMod(TargetedMod.JOURNEYMAP)),
-    ;
+        .setApplyIf(() -> true).addTargetedMod(TargetedMod.JOURNEYMAP)),
+    // CoFH
+
+    COFH_REMOVE_TE_CACHE(
+        new Builder("Remove CoFH tile entity cache").addMixinClasses("cofhcore.MixinWorld_CoFH_TE_Cache")
+            .setSide(Side.BOTH).setApplyIf(() -> true)
+            .addTargetedMod(TargetedMod.COFH_CORE).setPhase(Phase.EARLY)),
+
+    // Muyacore
+
+    // Manametal
+
+    REMOVE_M3_LOAD_SCHEMATIC_NPE(new Builder("remove NullPointerException printStack during m3 loading schematic")
+        .setPhase(Phase.LATE).setSide(Side.BOTH).addMixinClasses("manametal.MixinSchematic")
+        .setApplyIf(() -> true).addTargetedMod(TargetedMod.MANAMETAL)),
+
+    REMOVE_M3_REGISTER_DUPED_ITEM(new Builder("remove duped item message during m3 init")
+        .setPhase(Phase.LATE).setSide(Side.BOTH).addMixinClasses("manametal.MixinCuisineCore")
+        .setApplyIf(() -> true).addTargetedMod(TargetedMod.MANAMETAL)),
+
+    REMOVE_M3_FOG_EVENT(new Builder("remove m3 fog event to improve performance")
+        .setPhase(Phase.LATE).setSide(Side.BOTH).addMixinClasses("manametal.MixinEventFog")
+        .setApplyIf(() -> true).addTargetedMod(TargetedMod.MANAMETAL)),
+    // Waila
+
+    FIX_WAILA_OPENCOMPUTER_COPY_ITEMSTACK(new Builder("Fix Waila cause Opencomputer robot and microcontroller no use copy")
+        .setPhase(Phase.LATE).setSide(Side.CLIENT).addMixinClasses("waila.MixinRayTracing")
+        .setApplyIf(() -> Loader.isModLoaded(TargetedMod.OPENCOMPUTER.modName)).addTargetedMod(TargetedMod.WAILA)
+    );
 
     private final List<String> mixinClasses;
     private final List<TargetedMod> targetedMods;
@@ -77,7 +105,7 @@ public enum Mixins {
                 }
             }
         }
-        M3fix.LOG.info("Not loading the following EARLY mixins: {}", notLoading.toString());
+        M3Fix.LOG.info("Not loading the following EARLY mixins: {}", notLoading.toString());
         return mixins;
     }
 
@@ -94,7 +122,7 @@ public enum Mixins {
                 }
             }
         }
-        M3fix.LOG.info("Not loading the following LATE mixins: {}", notLoading.toString());
+        M3Fix.LOG.info("Not loading the following LATE mixins: {}", notLoading.toString());
         return mixins;
     }
 

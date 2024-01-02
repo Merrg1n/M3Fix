@@ -13,6 +13,11 @@ public enum TargetedMod {
     LWJGL3IFY("lwjgl3ify", "me.eigenraven.lwjgl3ify.core.Lwjgl3ifyCoremod", "lwjgl3ify"),
     NOTENOUGHITEMS("NotEnoughItems", "codechicken.nei.asm.NEICorePlugin", "NotEnoughItems"),
     OPTIFINE("Optifine", "optifine.OptiFineForgeTweaker", "Optifine"),
+    WAILA("Waila", null, "waila"),
+
+    OPENCOMPUTER("OpenComputers", "li.cil.oc.common.launch.TransformerLoader", "OpenComputers"),
+    MUYACORE("Muya Mod", "tw.pearki.mcmod.muya.asm.MuyaASMCore", "Muya"),
+    MANAMETAL("ManaMetalMod","project.studio.manametalmod.asm.M3ASM","manametalmod"),
     VANILLA("Minecraft", null);
     // NOTE: This doesn't work - late mods need a modid, not a coremod class
 
