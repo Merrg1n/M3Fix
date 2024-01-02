@@ -53,7 +53,11 @@ public enum Mixins {
         .setApplyIf(() -> true).addTargetedMod(TargetedMod.MANAMETAL)),
 
     REMOVE_M3_FOG_EVENT(new Builder("remove m3 fog event to improve performance")
-        .setPhase(Phase.LATE).setSide(Side.BOTH).addMixinClasses("manametal.MixinEventFog")
+        .setPhase(Phase.LATE).setSide(Side.CLIENT).addMixinClasses("manametal.MixinEventFog")
+        .setApplyIf(() -> true).addTargetedMod(TargetedMod.MANAMETAL)),
+
+    OPTIMIZE_M3_GETCOLOR(new Builder("cache color to improve performance")
+        .setPhase(Phase.LATE).setSide(Side.CLIENT).addMixinClasses("manametal.MixinEventGUI")
         .setApplyIf(() -> true).addTargetedMod(TargetedMod.MANAMETAL)),
     // Waila
 
