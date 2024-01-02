@@ -8,11 +8,30 @@ import java.util.Set;
 import java.util.function.Supplier;
 
 
+import com.merrg1n.m3fix.Config;
 import com.merrg1n.m3fix.M3fix;
 import cpw.mods.fml.relauncher.FMLLaunchHandler;
 
 public enum Mixins {
+    // Disable update checkers
+    COFH_CORE_UPDATE_CHECK(new Builder("Yeet COFH Core Update Check").setPhase(Phase.EARLY).setSide(Side.BOTH)
+        .addMixinClasses("cofhcore.MixinCoFHCoreUpdateCheck").setApplyIf(() -> Config.removeUpdateChecks)
+        .addTargetedMod(TargetedMod.COFH_CORE)),
+    JOURNEYMAP_UPDATE_CHECK(new Builder("Yeet Journeymap Update Check").setPhase(Phase.LATE).setSide(Side.CLIENT)
+        .addMixinClasses("journeymap.MixinVersionCheck").setApplyIf(() -> Config.removeUpdateChecks)
+        .addTargetedMod(TargetedMod.JOURNEYMAP)),
 
+    // Journeymap
+    FIX_JOURNEYMAP_KEYBINDS(new Builder("Fix Journeymap Keybinds").setPhase(Phase.LATE).setSide(Side.CLIENT)
+        .addMixinClasses("journeymap.MixinConstants").setApplyIf(() -> Config.fixJourneymapKeybinds)
+        .addTargetedMod(TargetedMod.JOURNEYMAP)),
+    FIX_JOURNEYMAP_ILLEGAL_FILE_PATH_CHARACTER(new Builder("Fix Journeymap Illegal File Path Character")
+        .setPhase(Phase.LATE).setSide(Side.CLIENT).addMixinClasses("journeymap.MixinWorldData")
+        .setApplyIf(() -> Config.fixJourneymapFilePath).addTargetedMod(TargetedMod.JOURNEYMAP)),
+
+    FIX_JOURNEYMAP_JUMPY_SCROLLING(new Builder("Fix Journeymap jumpy scrolling in the waypoint manager")
+        .setPhase(Phase.LATE).setSide(Side.CLIENT).addMixinClasses("journeymap.MixinWaypointManager")
+        .setApplyIf(() -> Config.fixJourneymapJumpyScrolling).addTargetedMod(TargetedMod.JOURNEYMAP)),
     ;
 
     private final List<String> mixinClasses;
