@@ -33,6 +33,13 @@ public enum Mixins {
     FIX_JOURNEYMAP_JUMPY_SCROLLING(new Builder("Fix Journeymap jumpy scrolling in the waypoint manager")
         .setPhase(Phase.LATE).setSide(Side.CLIENT).addMixinClasses("journeymap.MixinWaypointManager")
         .setApplyIf(() -> true).addTargetedMod(TargetedMod.JOURNEYMAP)),
+
+    // Vanilla
+    ENABLE_ADAPTIVE_VSYNC(new Builder("Enable Adaptive vsync")
+        .setPhase(Phase.EARLY).setSide(Side.CLIENT)
+        .addMixinClasses("minecraft.MixinMinecraft_AdaptiveSync", "minecraft.MixinGameSettings_AdaptiveSync")
+        .setApplyIf(() -> true).addTargetedMod(TargetedMod.VANILLA)),
+
     // CoFH
 
     COFH_REMOVE_TE_CACHE(
@@ -77,7 +84,7 @@ public enum Mixins {
         this.mixinClasses = builder.mixinClasses;
         this.targetedMods = builder.targetedMods;
         this.excludedMods = builder.excludedMods;
-        this.applyIf = builder.applyIf;
+        this.applyIf = builder.applyIf == null ? builder.applyIf :  (() -> true);
         this.phase = builder.phase;
         this.side = builder.side;
         if (this.mixinClasses.isEmpty()) {
@@ -85,9 +92,6 @@ public enum Mixins {
         }
         if (this.targetedMods.isEmpty()) {
             throw new RuntimeException("No targeted mods specified for Mixin : " + this.name());
-        }
-        if (this.applyIf == null) {
-            throw new RuntimeException("No ApplyIf function specified for Mixin : " + this.name());
         }
         if (this.phase == null) {
             throw new RuntimeException("No Phase specified for Mixin : " + this.name());

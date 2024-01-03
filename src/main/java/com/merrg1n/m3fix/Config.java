@@ -9,6 +9,7 @@ public class Config {
     public static boolean removeUpdateChecks;
     public static boolean fixJourneymapFilePath;
 
+
     enum Category {
 
         ASM,
