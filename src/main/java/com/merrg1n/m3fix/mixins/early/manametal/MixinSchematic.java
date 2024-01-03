@@ -1,4 +1,4 @@
-package com.merrg1n.m3fix.mixins.late.manametal;
+package com.merrg1n.m3fix.mixins.early.manametal;
 
 import com.llamalad7.mixinextras.sugar.Local;
 import org.spongepowered.asm.mixin.Mixin;

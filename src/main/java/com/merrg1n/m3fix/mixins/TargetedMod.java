@@ -17,7 +17,7 @@ public enum TargetedMod {
 
     OPENCOMPUTER("OpenComputers", "li.cil.oc.common.launch.TransformerLoader", "OpenComputers"),
     MUYACORE("Muya Mod", "tw.pearki.mcmod.muya.asm.MuyaASMCore", "Muya"),
-    MANAMETAL("ManaMetalMod","project.studio.manametalmod.asm.M3ASM","manametalmod"),
+    MANAMETAL("ManaMetalMod",null,"manametalmod"),
     VANILLA("Minecraft", null);
     // NOTE: This doesn't work - late mods need a modid, not a coremod class
 

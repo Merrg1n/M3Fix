@@ -45,11 +45,11 @@ public enum Mixins {
     // Manametal
 
     REMOVE_M3_LOAD_SCHEMATIC_NPE(new Builder("remove NullPointerException printStack during m3 loading schematic")
-        .setPhase(Phase.LATE).setSide(Side.BOTH).addMixinClasses("manametal.MixinSchematic")
+        .setPhase(Phase.EARLY).setSide(Side.BOTH).addMixinClasses("manametal.MixinSchematic")
         .setApplyIf(() -> true).addTargetedMod(TargetedMod.MANAMETAL)),
 
     REMOVE_M3_REGISTER_DUPED_ITEM(new Builder("remove duped item message during m3 init")
-        .setPhase(Phase.LATE).setSide(Side.BOTH).addMixinClasses("manametal.MixinCuisineCore")
+        .setPhase(Phase.EARLY).setSide(Side.BOTH).addMixinClasses("manametal.MixinCuisineCore")
         .setApplyIf(() -> true).addTargetedMod(TargetedMod.MANAMETAL)),
 
     REMOVE_M3_FOG_EVENT(new Builder("remove m3 fog event to improve performance")
