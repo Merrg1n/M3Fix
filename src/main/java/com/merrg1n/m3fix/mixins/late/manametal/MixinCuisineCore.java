@@ -1,4 +1,4 @@
-package com.merrg1n.m3fix.mixins.early.manametal;
+package com.merrg1n.m3fix.mixins.late.manametal;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
