@@ -15,24 +15,24 @@ import cpw.mods.fml.relauncher.FMLLaunchHandler;
 
 public enum Mixins {
     // Disable update checkers
-    COFH_CORE_UPDATE_CHECK(new Builder("Yeet COFH Core Update Check").setPhase(Phase.EARLY).setSide(Side.BOTH)
-        .addMixinClasses("cofhcore.MixinCoFHCoreUpdateCheck").setApplyIf(() -> Config.removeUpdateChecks)
-        .addTargetedMod(TargetedMod.COFH_CORE)),
-    JOURNEYMAP_UPDATE_CHECK(new Builder("Yeet Journeymap Update Check").setPhase(Phase.LATE).setSide(Side.CLIENT)
-        .addMixinClasses("journeymap.MixinVersionCheck").setApplyIf(() -> Config.removeUpdateChecks)
-        .addTargetedMod(TargetedMod.JOURNEYMAP)),
-
-    // Journeymap
-    FIX_JOURNEYMAP_KEYBINDS(new Builder("Fix Journeymap Keybinds").setPhase(Phase.LATE).setSide(Side.CLIENT)
-        .addMixinClasses("journeymap.MixinConstants").setApplyIf(() -> true)
-        .addTargetedMod(TargetedMod.JOURNEYMAP)),
-    FIX_JOURNEYMAP_ILLEGAL_FILE_PATH_CHARACTER(new Builder("Fix Journeymap Illegal File Path Character")
-        .setPhase(Phase.LATE).setSide(Side.CLIENT).addMixinClasses("journeymap.MixinWorldData")
-        .setApplyIf(() -> Config.fixJourneymapFilePath).addTargetedMod(TargetedMod.JOURNEYMAP)),
-
-    FIX_JOURNEYMAP_JUMPY_SCROLLING(new Builder("Fix Journeymap jumpy scrolling in the waypoint manager")
-        .setPhase(Phase.LATE).setSide(Side.CLIENT).addMixinClasses("journeymap.MixinWaypointManager")
-        .setApplyIf(() -> true).addTargetedMod(TargetedMod.JOURNEYMAP)),
+//    COFH_CORE_UPDATE_CHECK(new Builder("Yeet COFH Core Update Check").setPhase(Phase.EARLY).setSide(Side.BOTH)
+//        .addMixinClasses("cofhcore.MixinCoFHCoreUpdateCheck").setApplyIf(() -> Config.removeUpdateChecks)
+//        .addTargetedMod(TargetedMod.COFH_CORE)),
+//    JOURNEYMAP_UPDATE_CHECK(new Builder("Yeet Journeymap Update Check").setPhase(Phase.LATE).setSide(Side.CLIENT)
+//        .addMixinClasses("journeymap.MixinVersionCheck").setApplyIf(() -> Config.removeUpdateChecks)
+//        .addTargetedMod(TargetedMod.JOURNEYMAP)),
+//
+//    // Journeymap
+//    FIX_JOURNEYMAP_KEYBINDS(new Builder("Fix Journeymap Keybinds").setPhase(Phase.LATE).setSide(Side.CLIENT)
+//        .addMixinClasses("journeymap.MixinConstants")
+//        .addTargetedMod(TargetedMod.JOURNEYMAP)),
+//    FIX_JOURNEYMAP_ILLEGAL_FILE_PATH_CHARACTER(new Builder("Fix Journeymap Illegal File Path Character")
+//        .setPhase(Phase.LATE).setSide(Side.CLIENT).addMixinClasses("journeymap.MixinWorldData")
+//        .setApplyIf(() -> Config.fixJourneymapFilePath).addTargetedMod(TargetedMod.JOURNEYMAP)),
+//
+//    FIX_JOURNEYMAP_JUMPY_SCROLLING(new Builder("Fix Journeymap jumpy scrolling in the waypoint manager")
+//        .setPhase(Phase.LATE).setSide(Side.CLIENT).addMixinClasses("journeymap.MixinWaypointManager")
+//        .addTargetedMod(TargetedMod.JOURNEYMAP)),
 
     // Vanilla
     ENABLE_ADAPTIVE_VSYNC(new Builder("Enable Adaptive vsync")
@@ -42,10 +42,9 @@ public enum Mixins {
 
     // CoFH
 
-    COFH_REMOVE_TE_CACHE(
-        new Builder("Remove CoFH tile entity cache").addMixinClasses("cofhcore.MixinWorld_CoFH_TE_Cache")
-            .setSide(Side.BOTH).setApplyIf(() -> true)
-            .addTargetedMod(TargetedMod.COFH_CORE).setPhase(Phase.EARLY)),
+//    COFH_REMOVE_TE_CACHE(new Builder("Remove CoFH tile entity cache")
+//        .addMixinClasses("cofhcore.MixinWorld_CoFH_TE_Cache").setSide(Side.BOTH)
+//        .addTargetedMod(TargetedMod.COFH_CORE).setPhase(Phase.EARLY)),
 
     // Muyacore
 
@@ -66,6 +65,13 @@ public enum Mixins {
     OPTIMIZE_M3_GETCOLOR(new Builder("cache color to improve performance")
         .setPhase(Phase.LATE).setSide(Side.CLIENT).addMixinClasses("manametal.MixinEventGUI")
         .setApplyIf(() -> true).addTargetedMod(TargetedMod.MANAMETAL)),
+
+    FIX_M3_LEAVES(new Builder("make m3 leaves follow the graphic setting")
+        .setPhase(Phase.LATE).setSide(Side.CLIENT)
+        .addMixinClasses("manametal.MixinBlockTreeLeavesFruits", "manametal.MixinBlockTreeLeavesSpecial", "manametal.MixinBlockTreeLeaves")
+        .setApplyIf(() -> true).addTargetedMod(TargetedMod.MANAMETAL)),
+
+
     // Waila
 
     FIX_WAILA_OPENCOMPUTER_COPY_ITEMSTACK(new Builder("Fix Waila cause Opencomputer robot and microcontroller no use copy")
@@ -84,7 +90,7 @@ public enum Mixins {
         this.mixinClasses = builder.mixinClasses;
         this.targetedMods = builder.targetedMods;
         this.excludedMods = builder.excludedMods;
-        this.applyIf = builder.applyIf == null ? builder.applyIf :  (() -> true);
+        this.applyIf = builder.applyIf == null ? builder.applyIf : (() -> true);
         this.phase = builder.phase;
         this.side = builder.side;
         if (this.mixinClasses.isEmpty()) {
