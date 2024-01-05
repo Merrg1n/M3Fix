@@ -14,37 +14,12 @@ import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.relauncher.FMLLaunchHandler;
 
 public enum Mixins {
-    // Disable update checkers
-//    COFH_CORE_UPDATE_CHECK(new Builder("Yeet COFH Core Update Check").setPhase(Phase.EARLY).setSide(Side.BOTH)
-//        .addMixinClasses("cofhcore.MixinCoFHCoreUpdateCheck").setApplyIf(() -> Config.removeUpdateChecks)
-//        .addTargetedMod(TargetedMod.COFH_CORE)),
-//    JOURNEYMAP_UPDATE_CHECK(new Builder("Yeet Journeymap Update Check").setPhase(Phase.LATE).setSide(Side.CLIENT)
-//        .addMixinClasses("journeymap.MixinVersionCheck").setApplyIf(() -> Config.removeUpdateChecks)
-//        .addTargetedMod(TargetedMod.JOURNEYMAP)),
-//
-//    // Journeymap
-//    FIX_JOURNEYMAP_KEYBINDS(new Builder("Fix Journeymap Keybinds").setPhase(Phase.LATE).setSide(Side.CLIENT)
-//        .addMixinClasses("journeymap.MixinConstants")
-//        .addTargetedMod(TargetedMod.JOURNEYMAP)),
-//    FIX_JOURNEYMAP_ILLEGAL_FILE_PATH_CHARACTER(new Builder("Fix Journeymap Illegal File Path Character")
-//        .setPhase(Phase.LATE).setSide(Side.CLIENT).addMixinClasses("journeymap.MixinWorldData")
-//        .setApplyIf(() -> Config.fixJourneymapFilePath).addTargetedMod(TargetedMod.JOURNEYMAP)),
-//
-//    FIX_JOURNEYMAP_JUMPY_SCROLLING(new Builder("Fix Journeymap jumpy scrolling in the waypoint manager")
-//        .setPhase(Phase.LATE).setSide(Side.CLIENT).addMixinClasses("journeymap.MixinWaypointManager")
-//        .addTargetedMod(TargetedMod.JOURNEYMAP)),
 
     // Vanilla
     ENABLE_ADAPTIVE_VSYNC(new Builder("Enable Adaptive vsync")
         .setPhase(Phase.EARLY).setSide(Side.CLIENT)
         .addMixinClasses("minecraft.MixinMinecraft_AdaptiveSync", "minecraft.MixinGameSettings_AdaptiveSync")
         .setApplyIf(() -> true).addTargetedMod(TargetedMod.VANILLA)),
-
-    // CoFH
-
-//    COFH_REMOVE_TE_CACHE(new Builder("Remove CoFH tile entity cache")
-//        .addMixinClasses("cofhcore.MixinWorld_CoFH_TE_Cache").setSide(Side.BOTH)
-//        .addTargetedMod(TargetedMod.COFH_CORE).setPhase(Phase.EARLY)),
 
     // Muyacore
 

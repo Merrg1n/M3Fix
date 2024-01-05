@@ -13,7 +13,6 @@ import java.util.Set;
 
 @IFMLLoadingPlugin.MCVersion("1.7.10")
 @IFMLLoadingPlugin.TransformerExclusions({ "optifine" })
-@IFMLLoadingPlugin.DependsOn("cofh.asm.LoadingPlugin")
 public class M3FixCore implements IFMLLoadingPlugin, IEarlyMixinLoader {
     static {
         Config.synchronizeConfiguration(new File(Launch.minecraftHome, "config/m3fix.cfg"));
