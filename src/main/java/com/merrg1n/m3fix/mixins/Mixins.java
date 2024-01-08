@@ -21,35 +21,56 @@ public enum Mixins {
         .addMixinClasses("minecraft.MixinMinecraft_AdaptiveSync", "minecraft.MixinGameSettings_AdaptiveSync")
         .setApplyIf(() -> true).addTargetedMod(TargetedMod.VANILLA)),
 
+    FIX_KEY_OOBE(new Builder("Fix keycode out of range when get key name")
+        .setPhase(Phase.EARLY).setSide(Side.CLIENT)
+        .addMixinClasses("minecraft.MixinGameSettings_FixKeyOOBE")
+        .setApplyIf(() -> true).addTargetedMod(TargetedMod.VANILLA)),
+
     // Muyacore
 
     // Manametal
 
-    REMOVE_M3_LOAD_SCHEMATIC_NPE(new Builder("remove NullPointerException printStack during m3 loading schematic")
+    REMOVE_M3_LOAD_SCHEMATIC_NPE(new Builder("Remove NullPointerException printStack during m3 loading schematic")
         .setPhase(Phase.LATE).setSide(Side.BOTH).addMixinClasses("manametal.MixinSchematic")
         .setApplyIf(() -> true).addTargetedMod(TargetedMod.MANAMETAL)),
 
-    REMOVE_M3_REGISTER_DUPED_ITEM(new Builder("remove duped item message during m3 init")
+    REMOVE_M3_REGISTER_DUPED_ITEM(new Builder("Remove duped item message during m3 init")
         .setPhase(Phase.LATE).setSide(Side.BOTH).addMixinClasses("manametal.MixinCuisineCore")
         .setApplyIf(() -> true).addTargetedMod(TargetedMod.MANAMETAL)),
-
-    OPTIMIZE_M3_NPCSTORE(new Builder("precache m3 npc store list")
+    OPTIMIZE_M3_NPCSTORE(new Builder("Optimize m3 NPC store")
         .setPhase(Phase.LATE).setSide(Side.BOTH).addMixinClasses("manametal.MixinNbtNpcData")
         .setApplyIf(() -> true).addTargetedMod(TargetedMod.MANAMETAL)),
 
-    OPTIMIZE_M3_RNG(new Builder("make m3 use optimized random number generator")
-        .setPhase(Phase.LATE).setSide(Side.BOTH).addMixinClasses("manametal.MixinMMM")
+    OPTIMIZE_M3_RNG(new Builder("Optimize M3 random number generator")
+        .setPhase(Phase.LATE).setSide(Side.BOTH)
+        .addMixinClasses(
+            "manametal.rng.MixinLapudaBlock",
+            "manametal.rng.MixinLightningBolt",
+            "manametal.rng.MixinMMM",
+            "manametal.rng.MixinModelBookshelf",
+            "manametal.rng.MixinRenderDragonM3",
+            "manametal.rng.MixinRenderEXPballMana",
+            "manametal.rng.MixinRenderItemHolyDevice",
+            "manametal.rng.MixinRenderLightningBoltPower",
+            "manametal.rng.MixinRenderModelDarkPerfusion",
+            "manametal.rng.MixinRenderThunderEffect",
+            "manametal.rng.MixinRenderTimemachine"
+        )
         .setApplyIf(() -> true).addTargetedMod(TargetedMod.MANAMETAL)),
 
-    REMOVE_M3_FOG_EVENT(new Builder("remove m3 fog event to improve performance")
+//    OPTIMIZE_M3_SPHERE_RENDER(new Builder("Optimize m3 sphere render")
+//        .setPhase(Phase.LATE).setSide(Side.CLIENT).addMixinClasses("manametal.render.MixinRenderDarkPower")
+//        .setApplyIf(() -> true).addTargetedMod(TargetedMod.MANAMETAL)),
+
+    REMOVE_M3_FOG_EVENT(new Builder("Remove m3 fog event to improve performance")
         .setPhase(Phase.LATE).setSide(Side.CLIENT).addMixinClasses("manametal.MixinEventFog")
         .setApplyIf(() -> true).addTargetedMod(TargetedMod.MANAMETAL)),
 
-    OPTIMIZE_M3_GETCOLOR(new Builder("cache color to improve performance")
+    OPTIMIZE_M3_GETCOLOR(new Builder("Cache color to improve performance")
         .setPhase(Phase.LATE).setSide(Side.CLIENT).addMixinClasses("manametal.MixinEventGUI")
         .setApplyIf(() -> true).addTargetedMod(TargetedMod.MANAMETAL)),
 
-    FIX_M3_LEAVES(new Builder("make m3 leaves follow the graphic setting")
+    FIX_M3_LEAVES(new Builder("Fix m3 leave block doesn't follow the graphic setting")
         .setPhase(Phase.LATE).setSide(Side.CLIENT)
         .addMixinClasses("manametal.MixinBlockTreeLeavesFruits", "manametal.MixinBlockTreeLeavesSpecial", "manametal.MixinBlockTreeLeaves")
         .setApplyIf(() -> true).addTargetedMod(TargetedMod.MANAMETAL)),
@@ -57,7 +78,7 @@ public enum Mixins {
 
     // Waila
 
-    FIX_WAILA_OPENCOMPUTER_COPY_ITEMSTACK(new Builder("Fix Waila cause Opencomputer robot and microcontroller no use copy")
+    FIX_WAILA_OPENCOMPUTER_COPY_ITEMSTACK(new Builder("Fix waila unused copy on opencomputer's robot and microcontroller")
         .setPhase(Phase.LATE).setSide(Side.CLIENT).addMixinClasses("waila.MixinRayTracing")
         .setApplyIf(() -> Loader.isModLoaded(TargetedMod.OPENCOMPUTER.modName)).addTargetedMod(TargetedMod.WAILA)
     );

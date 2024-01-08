@@ -1,4 +1,4 @@
-package com.merrg1n.m3fix.mixins.late.manametal;
+package com.merrg1n.m3fix.mixins.late.manametal.rng;
 
 import com.mitchej123.hodgepodge.XSTR;
 import org.spongepowered.asm.mixin.Mixin;
