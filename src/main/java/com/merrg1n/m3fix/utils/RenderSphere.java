@@ -86,7 +86,6 @@ public class RenderSphere {
         isInited = true;
     }
 
-    // TODO : fix this code
     public static void render(float size) {
         if (!isInited) {
             init();
