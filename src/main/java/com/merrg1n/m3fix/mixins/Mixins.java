@@ -58,23 +58,28 @@ public enum Mixins {
         )
         .setApplyIf(() -> true).addTargetedMod(TargetedMod.MANAMETAL)),
 
-//    OPTIMIZE_M3_SPHERE_RENDER(new Builder("Optimize m3 sphere render")
-//        .setPhase(Phase.LATE).setSide(Side.CLIENT).addMixinClasses("manametal.render.MixinRenderDarkPower")
-//        .setApplyIf(() -> true).addTargetedMod(TargetedMod.MANAMETAL)),
+    OPTIMIZE_M3_SPHERE_RENDER(new Builder("Optimize m3 sphere render")
+        .setPhase(Phase.LATE).setSide(Side.CLIENT)
+        .addMixinClasses("manametal.render.MixinSphereDraw")
+        .addTargetedMod(TargetedMod.MANAMETAL)),
 
     REMOVE_M3_FOG_EVENT(new Builder("Remove m3 fog event to improve performance")
         .setPhase(Phase.LATE).setSide(Side.CLIENT).addMixinClasses("manametal.MixinEventFog")
-        .setApplyIf(() -> true).addTargetedMod(TargetedMod.MANAMETAL)),
+        .addTargetedMod(TargetedMod.MANAMETAL)),
 
     OPTIMIZE_M3_GETCOLOR(new Builder("Cache color to improve performance")
         .setPhase(Phase.LATE).setSide(Side.CLIENT).addMixinClasses("manametal.MixinEventGUI")
-        .setApplyIf(() -> true).addTargetedMod(TargetedMod.MANAMETAL)),
+        .addTargetedMod(TargetedMod.MANAMETAL)),
 
     FIX_M3_LEAVES(new Builder("Fix m3 leave block doesn't follow the graphic setting")
         .setPhase(Phase.LATE).setSide(Side.CLIENT)
         .addMixinClasses("manametal.MixinBlockTreeLeavesFruits", "manametal.MixinBlockTreeLeavesSpecial", "manametal.MixinBlockTreeLeaves")
-        .setApplyIf(() -> true).addTargetedMod(TargetedMod.MANAMETAL)),
+        .addTargetedMod(TargetedMod.MANAMETAL)),
 
+    ADD_MORE_NEIGTNH_M3(new Builder("Add more nei gtnh version support of manametalmod")
+        .setPhase(Phase.LATE).setSide(Side.CLIENT)
+        .addMixinClasses("manametal.nei.MixinNEIGTNHCore", "manametal.nei.MixinNEITileEntityTileBase")
+        .addTargetedMod(TargetedMod.MANAMETAL)),
 
     // Waila
 
@@ -94,7 +99,7 @@ public enum Mixins {
         this.mixinClasses = builder.mixinClasses;
         this.targetedMods = builder.targetedMods;
         this.excludedMods = builder.excludedMods;
-        this.applyIf = builder.applyIf == null ? builder.applyIf : (() -> true);
+        this.applyIf = builder.applyIf != null ? builder.applyIf : (() -> true);
         this.phase = builder.phase;
         this.side = builder.side;
         if (this.mixinClasses.isEmpty()) {
