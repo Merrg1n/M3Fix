@@ -8,6 +8,7 @@ import java.util.Set;
 import java.util.function.Supplier;
 
 
+import com.merrg1n.m3fix.Config;
 import com.merrg1n.m3fix.M3Fix;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.relauncher.FMLLaunchHandler;
@@ -18,12 +19,12 @@ public enum Mixins {
     ENABLE_ADAPTIVE_VSYNC(new Builder("Enable Adaptive vsync")
         .setPhase(Phase.EARLY).setSide(Side.CLIENT)
         .addMixinClasses("minecraft.MixinMinecraft_AdaptiveSync", "minecraft.MixinGameSettings_AdaptiveSync")
-        .setApplyIf(() -> true).addTargetedMod(TargetedMod.VANILLA)),
+        .setApplyIf(() -> Config.adaptive_vsync).addTargetedMod(TargetedMod.VANILLA)),
 
     FIX_KEY_OOBE(new Builder("Fix keycode out of range when get key name")
         .setPhase(Phase.EARLY).setSide(Side.CLIENT)
         .addMixinClasses("minecraft.MixinGameSettings_FixKeyOOBE")
-        .setApplyIf(() -> true).addTargetedMod(TargetedMod.VANILLA)),
+        .setApplyIf(() -> Config.fix_key_oobe).addTargetedMod(TargetedMod.VANILLA)),
 
     // Muyacore
 
@@ -55,7 +56,7 @@ public enum Mixins {
             "manametal.rng.MixinRenderThunderEffect",
             "manametal.rng.MixinRenderTimemachine"
         )
-        .setApplyIf(() -> true).addTargetedMod(TargetedMod.MANAMETAL)),
+        .setApplyIf(() -> Config.optimize_m3_rng).addTargetedMod(TargetedMod.MANAMETAL)),
 
     OPTIMIZE_M3_SPHERE_RENDER(new Builder("Optimize m3 sphere render")
         .setPhase(Phase.LATE).setSide(Side.CLIENT)
@@ -64,6 +65,7 @@ public enum Mixins {
 
     REMOVE_M3_FOG_EVENT(new Builder("Remove m3 fog event to improve performance")
         .setPhase(Phase.LATE).setSide(Side.CLIENT).addMixinClasses("manametal.MixinEventFog")
+        .setApplyIf(() -> Config.disable_m3_fog)
         .addTargetedMod(TargetedMod.MANAMETAL)),
 
     OPTIMIZE_M3_GETCOLOR(new Builder("Cache color to improve performance")
@@ -95,7 +97,8 @@ public enum Mixins {
 
     FIX_WAILA_OPENCOMPUTER_COPY_ITEMSTACK(new Builder("Fix waila unused copy on opencomputer's robot and microcontroller")
         .setPhase(Phase.LATE).setSide(Side.CLIENT).addMixinClasses("waila.MixinRayTracing")
-        .setApplyIf(() -> Loader.isModLoaded(TargetedMod.OPENCOMPUTER.modName)).addTargetedMod(TargetedMod.WAILA)
+        .addTargetedMod(TargetedMod.WAILA).addTargetedMod(TargetedMod.OPENCOMPUTER)
+        .setApplyIf(() -> Config.disable_waila_oc_copyitemstack)
     );
 
     private final List<String> mixinClasses;

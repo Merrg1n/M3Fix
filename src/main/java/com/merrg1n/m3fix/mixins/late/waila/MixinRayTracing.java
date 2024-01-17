@@ -6,6 +6,7 @@ import li.cil.oc.common.block.RobotProxy;
 import mcp.mobius.waila.overlay.RayTracing;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -25,7 +26,7 @@ public class MixinRayTracing {
     )
     public ItemStack getPickBlock(Block instance, MovingObjectPosition movingObjectPosition, World world, int x, int y, int z) {
         if (instance instanceof RobotProxy || instance instanceof Microcontroller) {
-            M3Fix.LOG.info("waila is trying to get opencomputer block!");
+            M3Fix.LOG.debug("waila is trying to get opencomputer block!");
             return null;
         }
         return instance.getPickBlock(movingObjectPosition, world, x, y, z);
