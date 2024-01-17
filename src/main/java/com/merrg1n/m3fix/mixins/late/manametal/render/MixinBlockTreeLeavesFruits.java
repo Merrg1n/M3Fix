@@ -1,4 +1,4 @@
-package com.merrg1n.m3fix.mixins.late.manametal;
+package com.merrg1n.m3fix.mixins.late.manametal.render;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

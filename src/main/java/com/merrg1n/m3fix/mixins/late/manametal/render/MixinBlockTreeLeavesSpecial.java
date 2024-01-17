@@ -1,4 +1,4 @@
-package com.merrg1n.m3fix.mixins.late.manametal;
+package com.merrg1n.m3fix.mixins.late.manametal.render;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -6,10 +6,10 @@ import net.minecraft.block.BlockLeaves;
 import net.minecraft.world.IBlockAccess;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
-import project.studio.manametalmod.blocks.BlockTreeLeaves;
+import project.studio.manametalmod.blocks.BlockTreeLeavesSpecial;
 
-@Mixin(value = BlockTreeLeaves.class, remap = false)
-public abstract class MixinBlockTreeLeaves extends BlockLeaves {
+@Mixin(value = BlockTreeLeavesSpecial.class, remap = false)
+public abstract class MixinBlockTreeLeavesSpecial extends BlockLeaves {
     /**
      * @author Merrg1n
      * @reason fix m3 leaves

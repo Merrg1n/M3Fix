@@ -8,7 +8,6 @@ import java.util.Set;
 import java.util.function.Supplier;
 
 
-import com.merrg1n.m3fix.Config;
 import com.merrg1n.m3fix.M3Fix;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.relauncher.FMLLaunchHandler;
@@ -73,7 +72,18 @@ public enum Mixins {
 
     FIX_M3_LEAVES(new Builder("Fix m3 leave block doesn't follow the graphic setting")
         .setPhase(Phase.LATE).setSide(Side.CLIENT)
-        .addMixinClasses("manametal.MixinBlockTreeLeavesFruits", "manametal.MixinBlockTreeLeavesSpecial", "manametal.MixinBlockTreeLeaves")
+        .addMixinClasses(
+            "manametal.render.MixinBlockTreeLeavesFruits", "manametal.render.MixinBlockTreeLeavesSpecial", "manametal.render.MixinBlockTreeLeaves")
+        .addTargetedMod(TargetedMod.MANAMETAL)),
+    REDUCE_M3_ZFIGHTING(new Builder("Reduce m3 models z-fighting.")
+        .setPhase(Phase.LATE).setSide(Side.CLIENT)
+        .addMixinClasses(
+            "manametal.model.MixinModelRuneStone",
+            "manametal.model.MixinLapudaBlocks_C7",
+            "manametal.model.MixinLapudaBlocks_C8",
+            "manametal.model.MixinModelTable",
+            "manametal.model.MixinModelTileEntityPot"
+        )
         .addTargetedMod(TargetedMod.MANAMETAL)),
 
     ADD_MORE_NEIGTNH_M3(new Builder("Add more nei gtnh version support of manametalmod")

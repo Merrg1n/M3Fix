@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import project.studio.manametalmod.nei.NEITileEntityTileBase;
 import codechicken.nei.recipe.TemplateRecipeHandler;
 
-import java.awt.*;
+import java.awt.Rectangle;
 
 
 @Mixin(value = NEITileEntityTileBase.class, remap = false)
