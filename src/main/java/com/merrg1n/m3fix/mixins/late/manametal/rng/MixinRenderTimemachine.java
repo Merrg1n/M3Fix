@@ -9,7 +9,7 @@ import project.studio.manametalmod.renderer.RenderTimemachine;
 
 import java.util.Random;
 
-@Mixin(value = RenderTimemachine.class, remap = false)
+@Mixin(value = RenderTimemachine.class)
 public class MixinRenderTimemachine {
     @Unique
     private static Random m3fix$rng = new XSTR();

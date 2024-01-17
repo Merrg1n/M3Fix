@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import project.studio.manametalmod.blocks.BlockTreeLeavesSpecial;
 
-@Mixin(value = BlockTreeLeavesSpecial.class, remap = false)
+@Mixin(value = BlockTreeLeavesSpecial.class)
 public abstract class MixinBlockTreeLeavesSpecial extends BlockLeaves {
     /**
      * @author Merrg1n

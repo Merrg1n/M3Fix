@@ -8,7 +8,7 @@ import project.studio.manametalmod.MMM;
 
 import java.util.Random;
 
-@Mixin(value = MMM.class, remap = false)
+@Mixin(value = MMM.class)
 public class MixinMMM {
     @Redirect(method = "<clinit>", at = @At(value = "NEW", target = "()Ljava/util/Random;", remap = false))
     private static Random useXSTR(){

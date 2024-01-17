@@ -9,7 +9,7 @@ import project.studio.manametalmod.renderer.RenderModelDarkPerfusion;
 
 import java.util.Random;
 
-@Mixin(value = RenderModelDarkPerfusion.class, remap = false)
+@Mixin(value = RenderModelDarkPerfusion.class)
 public class MixinRenderModelDarkPerfusion {
     @Unique
     private static Random m3fix$rng = new XSTR();

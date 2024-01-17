@@ -12,19 +12,20 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(value = RayTracing.class, remap = false)
+@Mixin(value = RayTracing.class)
 public class MixinRayTracing {
 
     @Redirect(
         method = "getIdentifierItems",
         at = @At(
             value = "INVOKE",
-            target= "Lnet/minecraft/block/Block;getPickBlock(Lnet/minecraft/util/MovingObjectPosition;Lnet/minecraft/world/World;III)Lnet/minecraft/item/ItemStack;"
-        )
+            target = "Lnet/minecraft/block/Block;getPickBlock(Lnet/minecraft/util/MovingObjectPosition;Lnet/minecraft/world/World;III)Lnet/minecraft/item/ItemStack;"
+        ),
+        remap = false
     )
-    public ItemStack getPickBlock(Block instance, MovingObjectPosition movingObjectPosition, World world, int x, int y, int z){
+    public ItemStack getPickBlock(Block instance, MovingObjectPosition movingObjectPosition, World world, int x, int y, int z) {
         if (instance instanceof RobotProxy || instance instanceof Microcontroller) {
-            M3Fix.LOG.debug("waila is trying to get opencomputer block!");
+            M3Fix.LOG.info("waila is trying to get opencomputer block!");
             return null;
         }
         return instance.getPickBlock(movingObjectPosition, world, x, y, z);

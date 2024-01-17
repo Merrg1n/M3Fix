@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import project.studio.manametalmod.furniture.model.LapudaBlocks_C7;
 
-@Mixin(value = LapudaBlocks_C7.class, remap = false)
+@Mixin(value = LapudaBlocks_C7.class)
 public class MixinLapudaBlocks_C7 {
 
     @Inject(

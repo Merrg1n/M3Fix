@@ -10,7 +10,7 @@ import project.studio.manametalmod.blueprint.Schematic;
 
 import java.io.InputStream;
 
-@Mixin(value = Schematic.class, remap = false)
+@Mixin(value = Schematic.class)
 public class MixinSchematic {
 
     @Inject(

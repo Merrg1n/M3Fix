@@ -8,7 +8,7 @@ import project.studio.manametalmod.fx.LightningHandler;
 
 import java.util.Random;
 
-@Mixin(value = LightningHandler.LightningBolt.class, remap = false)
+@Mixin(value = LightningHandler.LightningBolt.class)
 public class MixinLightningBolt {
     @Redirect(
         method = "<init>(Lnet/minecraft/world/World;Lproject/studio/manametalmod/core/Vector3;Lproject/studio/manametalmod/core/Vector3;FJIIF)V",

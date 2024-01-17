@@ -9,7 +9,7 @@ import project.studio.manametalmod.renderer.RenderEntityItemHolyDevice;
 
 import java.util.Random;
 
-@Mixin(value = RenderEntityItemHolyDevice.class, remap = false)
+@Mixin(value = RenderEntityItemHolyDevice.class)
 public class MixinRenderItemHolyDevice {
     @Unique
     private static Random m3fix$rng = new XSTR();
