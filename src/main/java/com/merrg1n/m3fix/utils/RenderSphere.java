@@ -22,7 +22,7 @@ public class RenderSphere {
     static IntBuffer buffered_indexes;
 
     static {
-        try (InputStream s = RenderSphere.class.getResourceAsStream("/sphere.model");) {
+        try (InputStream s = RenderSphere.class.getResourceAsStream("/sphere.model")) {
             assert s != null;
             BufferedReader r = new BufferedReader(new InputStreamReader(s));
             int[] size = Arrays.stream(r.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
@@ -75,7 +75,7 @@ public class RenderSphere {
         vbo = glGenBuffers();
         glBindBuffer(GL_ARRAY_BUFFER, vbo);
         glBufferData(GL_ARRAY_BUFFER, (long) vertices_count * (3 + 2) * 4, GL_STATIC_DRAW);
-        glBufferSubData(GL_ARRAY_BUFFER, (long) vertices_count * (0) * 4, buffered_vertices);
+        glBufferSubData(GL_ARRAY_BUFFER, 0L, buffered_vertices);
         glBufferSubData(GL_ARRAY_BUFFER, (long) vertices_count * (3) * 4, buffered_uv);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
 

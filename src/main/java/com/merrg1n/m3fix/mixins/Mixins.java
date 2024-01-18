@@ -84,7 +84,23 @@ public enum Mixins {
             "manametal.model.MixinLapudaBlocks_C7",
             "manametal.model.MixinLapudaBlocks_C8",
             "manametal.model.MixinModelTable",
-            "manametal.model.MixinModelTileEntityPot"
+            "manametal.model.MixinModelGrindstone",
+            "manametal.model.MixinModelTileEntityPot",
+            "manametal.model.MixinModelWeaponStar"
+        )
+        .addTargetedMod(TargetedMod.MANAMETAL)),
+
+    FIX_M3_TE_RENDER_BOX(new Builder("Fix some m3 tileentity render bounding box.")
+        .setPhase(Phase.LATE).setSide(Side.CLIENT)
+        .addMixinClasses(
+            "manametal.model.MixinTileEntityMagicObjectRotate",
+            "manametal.model.MixinTileEntityGilded",
+            "manametal.model.MixinTileEntityPaganDoor",
+            "manametal.model.MixinTileEntityDarkEnchanting",
+            "manametal.model.MixinTileEntityMagicUpdate",
+            "manametal.model.MixinTileEntityTimemachine",
+            "manametal.model.MixinTileEntityTotemSpring",
+            "manametal.model.MixinTileEntityWeaponStar"
         )
         .addTargetedMod(TargetedMod.MANAMETAL)),
 
