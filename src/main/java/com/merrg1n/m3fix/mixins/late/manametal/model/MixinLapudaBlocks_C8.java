@@ -18,6 +18,6 @@ public class MixinLapudaBlocks_C8 {
         )
     )
     void modifyModel(CallbackInfo ci) {
-        GL11.glTranslatef(0, -1f, 0);
+        GL11.glTranslatef(0, -3f, 0);
     }
 }
